@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PdfDollarScanner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+852a2a2680137cd89b8c61a19a285f6fc816d31a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed96eeb952ab67c47d7ce1c714092ebbe4243742")]
 [assembly: System.Reflection.AssemblyProductAttribute("PdfDollarScanner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PdfDollarScanner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

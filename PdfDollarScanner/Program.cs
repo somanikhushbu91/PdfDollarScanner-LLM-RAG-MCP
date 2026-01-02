@@ -1,14 +1,25 @@
-﻿using PdfDollarScanner;
+﻿using System.Formats.Asn1;
+using PdfDollarScanner;
+using PdfDollarScanner.Queue;
+using PdfDollarScanner.Services;
 
-Console.WriteLine("starting scheduled PDF scan...");
+var vectorStore = new InMemoryVectorStore();
+var ragIndexer = new RagIndexer(vectorStore);
 
 var scanner = new PdfScannerService(
     new McpClient(),
     new LlmService(),
-    new RagIndexer(),
+   ragIndexer,
     new AlertService()
 );
 
-await scanner.ScanAsync("sample.pdf");
+var queue = new LocalQueue();
+var processor = new QueueProcessor(queue, scanner);
 
-Console.WriteLine("Scan Complete");
+await queue.EnqueueAsync("sample.pdf");
+await queue.EnqueueAsync("sample2.pdf");
+
+queue.Complete();
+
+using var cts = new CancellationTokenSource();
+await processor.StartAsync(workerCount: 2, cts.Token);
